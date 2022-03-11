@@ -108,7 +108,9 @@ class TreeTest extends \CommonTestClass
             '/other1.txt',
             '/other2.txt',
         ]]);
-        $this->assertEquals(['/other1.txt', '/other2.txt'], $lib->getValues());
+        $vals = $lib->getValues();
+        sort($vals); // because it's a little dependent on volume's order
+        $this->assertEquals(['/other1.txt', '/other2.txt'], $vals);
     }
 
     public function filterFiles(SplFileInfo $info): bool
