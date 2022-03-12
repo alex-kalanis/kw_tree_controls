@@ -7,7 +7,7 @@ Controls for tree structure.
 ```
 {
     "require": {
-        "alex-kalanis/kw_tree_controls": "1.0"
+        "alex-kalanis/kw_tree_controls": "1.1"
     }
 }
 ```

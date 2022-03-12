@@ -41,10 +41,10 @@ class TreeTest extends \CommonTestClass
 
         // now check values setter
         $this->assertEmpty($lib->getValue());
-        $lib->setValue('/dummy1.txt');
-        $this->assertEquals('/dummy1.txt', $lib->getValue());
-        $lib->setValue('/other1.txt');
-        $this->assertEquals('/other1.txt', $lib->getValue());
+        $lib->setValue('dummy1.txt');
+        $this->assertEquals('dummy1.txt', $lib->getValue());
+        $lib->setValue('other1.txt');
+        $this->assertEquals('other1.txt', $lib->getValue());
     }
 
     public function testDirSelect(): void
@@ -60,8 +60,8 @@ class TreeTest extends \CommonTestClass
 
         // now check value setter
         $this->assertEmpty($lib->getValue());
-        $lib->setValue('/sub');
-        $this->assertEquals('/sub', $lib->getValue());
+        $lib->setValue('sub');
+        $this->assertEquals('sub', $lib->getValue());
     }
 
     public function testFileSelect(): void
@@ -102,15 +102,15 @@ class TreeTest extends \CommonTestClass
 
         // now check values setter
         $this->assertEmpty($lib->getValues());
-        $lib->setValues(['tstFSel' => ['/dummy2.txt']]);
-        $this->assertEquals(['/dummy2.txt'], $lib->getValues());
+        $lib->setValues(['tstFSel' => ['dummy2.txt']]);
+        $this->assertEquals(['dummy2.txt'], $lib->getValues());
         $lib->setValues(['tstFSel' => [
-            '/other1.txt',
-            '/other2.txt',
+            'other1.txt',
+            'other2.txt',
         ]]);
         $vals = $lib->getValues();
         sort($vals); // because it's a little dependent on volume's order
-        $this->assertEquals(['/other1.txt', '/other2.txt'], $vals);
+        $this->assertEquals(['other1.txt', 'other2.txt'], $vals);
     }
 
     public function filterFiles(SplFileInfo $info): bool
