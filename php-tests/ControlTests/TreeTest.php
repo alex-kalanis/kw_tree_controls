@@ -40,7 +40,9 @@ class TreeTest extends \CommonTestClass
         $this->assertNotEmpty(trim($lib->render()));
 
         // now check values setter
-        $this->assertEmpty($lib->getValue());
+        $this->assertEmpty($lib->getValue()); // default value, also root
+        $lib->setValue('non-existent');
+        $this->assertNull($lib->getValue());
         $lib->setValue('dummy1.txt');
         $this->assertEquals('dummy1.txt', $lib->getValue());
         $lib->setValue('other1.txt');
