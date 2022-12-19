@@ -1,8 +1,9 @@
 <?php
 
 use kalanis\kw_paths\Path;
+use kalanis\kw_tree\DataSources\Volume;
+use kalanis\kw_tree\Essentials\FileNode;
 use kalanis\kw_tree\Tree;
-use kalanis\kw_tree\FileNode;
 use PHPUnit\Framework\TestCase;
 
 
@@ -17,7 +18,7 @@ class CommonTestClass extends TestCase
         $paths = new Path();
         $paths->setDocumentRoot(__DIR__ . '/data'); // system root - where are all files
         $paths->setPathToSystemRoot('/tree');
-        $lib = new Tree($paths);
+        $lib = new Tree(new Volume($paths));
         $lib->canRecursive($recursive);
         $lib->startFromPath('/');
         if (!is_null($filterCallback)) {

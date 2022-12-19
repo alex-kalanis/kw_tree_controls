@@ -3,6 +3,10 @@
 namespace ControlTests;
 
 
+use kalanis\kw_forms\Controls as RootControls;
+use kalanis\kw_forms\Exceptions\RenderException;
+use kalanis\kw_tree\Essentials\FileNode;
+use kalanis\kw_tree_controls\ControlNode;
 use kalanis\kw_tree_controls\Controls;
 use SplFileInfo;
 
@@ -15,6 +19,9 @@ class TreeTest extends \CommonTestClass
         $this->assertNotEmpty($tree);
     }
 
+    /**
+     * @throws RenderException
+     */
     public function testDirRadio(): void
     {
         $lib = new Controls\DirRadio();
@@ -28,6 +35,9 @@ class TreeTest extends \CommonTestClass
         $this->assertNotEmpty(trim($lib->render()));
     }
 
+    /**
+     * @throws RenderException
+     */
     public function testFileRadio(): void
     {
         $lib = new Controls\FileRadio();
@@ -49,6 +59,9 @@ class TreeTest extends \CommonTestClass
         $this->assertEquals('other1.txt', $lib->getValue());
     }
 
+    /**
+     * @throws RenderException
+     */
     public function testDirSelect(): void
     {
         $lib = new Controls\DirSelect();
@@ -66,6 +79,9 @@ class TreeTest extends \CommonTestClass
         $this->assertEquals('sub', $lib->getValue());
     }
 
+    /**
+     * @throws RenderException
+     */
     public function testFileSelect(): void
     {
         $lib = new Controls\FileSelect();
@@ -78,6 +94,9 @@ class TreeTest extends \CommonTestClass
         $this->assertNotEmpty(trim($lib->render()));
     }
 
+    /**
+     * @throws RenderException
+     */
     public function testDirCheckboxes(): void
     {
         $lib = new Controls\DirCheckboxes();
@@ -91,6 +110,9 @@ class TreeTest extends \CommonTestClass
 //var_dump($lib->render());
     }
 
+    /**
+     * @throws RenderException
+     */
     public function testFileCheckboxes(): void
     {
         $lib = new Controls\FileCheckboxes();
@@ -115,6 +137,22 @@ class TreeTest extends \CommonTestClass
         $this->assertEquals(['other1.txt', 'other2.txt'], $vals);
     }
 
+    public function testNaming(): void
+    {
+        $lib = new XTreeControl();
+
+        $lib->set('tsNmg', 'ijn', 'rfv', null);
+
+        $this->assertEquals('', $lib->testingName(null));
+        $this->assertEquals('/', $lib->testingPath(null));
+
+        $node = new FileNode();
+        $node->setData(['ertz', 'dfgh', 'cvbn'], 2, 'char', false, false);
+
+        $this->assertEquals('cvbn', $lib->testingName($node));
+        $this->assertEquals('ertz/dfgh/cvbn', $lib->testingPath($node));
+    }
+
     public function filterFiles(SplFileInfo $info): bool
     {
         return $info->isFile();
@@ -125,3 +163,32 @@ class TreeTest extends \CommonTestClass
         return $info->isDir();
     }
 }
+
+
+class XTreeControl extends Controls\ATreeControl
+{
+    public function testingPath(?FileNode $node): string
+    {
+        return $this->stringPath($node);
+    }
+
+    public function testingName(?FileNode $node): string
+    {
+        return $this->stringName($node);
+    }
+
+    protected function getInput(FileNode $node): RootControls\AControl
+    {
+        $input = new RootControls\Hidden();
+        $input->set($this->getKey(), $this->stringPath($node));
+        $this->inputs[] = $input;
+        return $input;
+    }
+
+    protected function renderTree(?ControlNode $baseNode): string
+    {
+        return '';
+    }
+}
+
+
