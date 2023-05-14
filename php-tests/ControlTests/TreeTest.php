@@ -5,6 +5,7 @@ namespace ControlTests;
 
 use kalanis\kw_forms\Controls as RootControls;
 use kalanis\kw_forms\Exceptions\RenderException;
+use kalanis\kw_paths\PathsException;
 use kalanis\kw_tree\Essentials\FileNode;
 use kalanis\kw_tree_controls\ControlNode;
 use kalanis\kw_tree_controls\Controls;
@@ -13,6 +14,9 @@ use SplFileInfo;
 
 class TreeTest extends \CommonTestClass
 {
+    /**
+     * @throws PathsException
+     */
     public function testTree(): void
     {
         $tree = $this->getTree();
@@ -20,6 +24,7 @@ class TreeTest extends \CommonTestClass
     }
 
     /**
+     * @throws PathsException
      * @throws RenderException
      */
     public function testDirRadio(): void
@@ -36,6 +41,7 @@ class TreeTest extends \CommonTestClass
     }
 
     /**
+     * @throws PathsException
      * @throws RenderException
      */
     public function testFileRadio(): void
@@ -60,6 +66,7 @@ class TreeTest extends \CommonTestClass
     }
 
     /**
+     * @throws PathsException
      * @throws RenderException
      */
     public function testDirSelect(): void
@@ -80,6 +87,7 @@ class TreeTest extends \CommonTestClass
     }
 
     /**
+     * @throws PathsException
      * @throws RenderException
      */
     public function testFileSelect(): void
@@ -95,6 +103,7 @@ class TreeTest extends \CommonTestClass
     }
 
     /**
+     * @throws PathsException
      * @throws RenderException
      */
     public function testDirCheckboxes(): void
@@ -111,6 +120,7 @@ class TreeTest extends \CommonTestClass
     }
 
     /**
+     * @throws PathsException
      * @throws RenderException
      */
     public function testFileCheckboxes(): void

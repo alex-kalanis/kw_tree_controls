@@ -10,6 +10,7 @@ parameters:
 #		- 'php-tests/CommonTestClass.php'
 	bootstrapFiles:
 		- 'php-tests/_autoload.php'
+	treatPhpDocTypesAsCertain: false
 #	ignoreErrors:
 #		-
 #			message: '#expects resource, resource\|null given\.#'

@@ -1,9 +1,8 @@
 <?php
 
-use kalanis\kw_paths\Path;
+use kalanis\kw_paths\PathsException;
 use kalanis\kw_tree\DataSources\Volume;
 use kalanis\kw_tree\Essentials\FileNode;
-use kalanis\kw_tree\Tree;
 use PHPUnit\Framework\TestCase;
 
 
@@ -13,18 +12,20 @@ use PHPUnit\Framework\TestCase;
  */
 class CommonTestClass extends TestCase
 {
+    /**
+     * @param callable|null $filterCallback
+     * @param bool $recursive
+     * @throws PathsException
+     * @return FileNode|null
+     */
     protected function getTree($filterCallback = null, bool $recursive = true): ?FileNode
     {
-        $paths = new Path();
-        $paths->setDocumentRoot(__DIR__ . '/data'); // system root - where are all files
-        $paths->setPathToSystemRoot('/tree');
-        $lib = new Tree(new Volume($paths));
-        $lib->canRecursive($recursive);
-        $lib->startFromPath('/');
+        $lib = new Volume(__DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'tree');
+        $lib->wantDeep($recursive);
         if (!is_null($filterCallback)) {
             $lib->setFilterCallback($filterCallback);
         }
         $lib->process();
-        return $lib->getTree();
+        return $lib->getRoot();
     }
 }
