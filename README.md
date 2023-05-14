@@ -1,6 +1,6 @@
 # kw_tree_controls
 
-[![Build Status](https://travis-ci.org/alex-kalanis/kw_tree_controls.svg?branch=master)](https://travis-ci.org/alex-kalanis/kw_tree_controls)
+[![Build Status](https://app.travis-ci.com/alex-kalanis/kw_tree_controls.svg?branch=master)](https://app.travis-ci.com/github/alex-kalanis/kw_tree_controls)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/alex-kalanis/kw_tree_controls/v/stable.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_tree_controls)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
@@ -8,7 +8,9 @@
 [![License](https://poser.pugx.org/alex-kalanis/kw_tree_controls/license.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_tree_controls)
 [![Code Coverage](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/badges/coverage.png?b=master&v=1)](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/?branch=master)
 
-Controls created for tree structure.
+Controls created from tree structure from source. For your own styles you need
+to wrap them into some element which will allow you to style them with current
+classes or you need to extend current classes and write them on your own.
 
 ## PHP Installation
 
