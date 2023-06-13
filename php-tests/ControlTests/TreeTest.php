@@ -7,13 +7,17 @@ use kalanis\kw_forms\Controls as RootControls;
 use kalanis\kw_forms\Exceptions\RenderException;
 use kalanis\kw_paths\PathsException;
 use kalanis\kw_tree\Essentials\FileNode;
+use kalanis\kw_tree\Traits\TVolumeDirs;
+use kalanis\kw_tree\Traits\TVolumeFile;
 use kalanis\kw_tree_controls\ControlNode;
 use kalanis\kw_tree_controls\Controls;
-use SplFileInfo;
 
 
 class TreeTest extends \CommonTestClass
 {
+    use TVolumeFile;
+    use TVolumeDirs;
+
     /**
      * @throws PathsException
      */
@@ -35,8 +39,11 @@ class TreeTest extends \CommonTestClass
         $this->assertEmpty(trim($lib->render()));
 
         // filled one
-        $tree = $this->getTree([$this, 'filterDirs']);
+        $tree = $this->getTree([$this, 'justDirsCallback']);
         $lib->set('tstDRadio', '', '', $tree);
+        $this->assertNotEmpty(trim($lib->render()));
+
+        $lib->set('tstDRadio', '', '', $tree, false);
         $this->assertNotEmpty(trim($lib->render()));
     }
 
@@ -51,8 +58,11 @@ class TreeTest extends \CommonTestClass
         $lib->set('tstFRadio', '', '', null);
         $this->assertEmpty(trim($lib->render()));
 
-        $tree = $this->getTree([$this, 'filterFiles'], false);
+        $tree = $this->getTree([$this, 'justFilesCallback'], false);
         $lib->set('tstFRadio', '', '', $tree);
+        $this->assertNotEmpty(trim($lib->render()));
+
+        $lib->set('tstFRadio', '', '', $tree, false);
         $this->assertNotEmpty(trim($lib->render()));
 
         // now check values setter
@@ -76,8 +86,11 @@ class TreeTest extends \CommonTestClass
         $lib->set('tstDSel', '', '', null);
         $this->assertEmpty(trim($lib->render()));
 
-        $tree = $this->getTree([$this, 'filterDirs']);
+        $tree = $this->getTree([$this, 'justDirsCallback']);
         $lib->set('tstDSel', '', '', $tree);
+        $this->assertNotEmpty(trim($lib->render()));
+
+        $lib->set('tstDSel', '', '', $tree, false);
         $this->assertNotEmpty(trim($lib->render()));
 
         // now check value setter
@@ -100,6 +113,9 @@ class TreeTest extends \CommonTestClass
         $tree = $this->getTree();
         $lib->set('tstFSel', '', '', $tree);
         $this->assertNotEmpty(trim($lib->render()));
+
+        $lib->set('tstFSel', '', '', $tree, false);
+        $this->assertNotEmpty(trim($lib->render()));
     }
 
     /**
@@ -113,8 +129,11 @@ class TreeTest extends \CommonTestClass
         $lib->set('tstDChk', '', '', null);
         $this->assertEmpty(trim($lib->render()));
 
-        $tree = $this->getTree([$this, 'filterDirs']);
+        $tree = $this->getTree([$this, 'justDirsCallback']);
         $lib->set('tstDChk', '', '', $tree);
+        $this->assertNotEmpty(trim($lib->render()));
+
+        $lib->set('tstDChk', '', '', $tree, false);
         $this->assertNotEmpty(trim($lib->render()));
 //var_dump($lib->render());
     }
@@ -145,6 +164,9 @@ class TreeTest extends \CommonTestClass
         $vals = $lib->getValues();
         sort($vals); // because it's a little dependent on volume's order
         $this->assertEquals(['other1.txt', 'other2.txt'], $vals);
+
+        $lib->set('tstFSel', '', '', $tree, false);
+        $this->assertNotEmpty(trim($lib->render()));
     }
 
     public function testNaming(): void
@@ -163,14 +185,17 @@ class TreeTest extends \CommonTestClass
         $this->assertEquals('ertz/dfgh/cvbn', $lib->testingPath($node));
     }
 
-    public function filterFiles(SplFileInfo $info): bool
+    /**
+     * @throws RenderException
+     */
+    public function testEmptyControl(): void
     {
-        return $info->isFile();
-    }
+        $lib = new Controls\EmptyControl();
 
-    public function filterDirs(SplFileInfo $info): bool
-    {
-        return $info->isDir();
+        $lib->set('tsNmg', 'ijn', 'rfv');
+        $lib->setValue('ijnhubzgv');
+        $this->assertNull($lib->getValue());
+        $this->assertEquals('<label for="tsNmg">rfv</label>  ', $lib->render());
     }
 }
 
@@ -200,5 +225,3 @@ class XTreeControl extends Controls\ATreeControl
         return '';
     }
 }
-
-
