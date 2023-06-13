@@ -21,7 +21,7 @@ class EmptyControl extends Text
         return null;
     }
 
-    public function setValue($value): void
+    public function setValue(/** @scrutinizer ignore-unused */ $value): void
     {
         // intentionally nothing
     }
