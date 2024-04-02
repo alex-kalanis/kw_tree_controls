@@ -26,8 +26,8 @@ trait TWhereDir
     }
 
     /**
-     * @throws FormsException
      * @param string $where
+     * @throws FormsException
      */
     public function updateWhereDir(string $where): void
     {
