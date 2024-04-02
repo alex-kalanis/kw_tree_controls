@@ -1,9 +1,9 @@
 # kw_tree_controls
 
-[![Build Status](https://app.travis-ci.com/alex-kalanis/kw_tree_controls.svg?branch=master)](https://app.travis-ci.com/github/alex-kalanis/kw_tree_controls)
+![Build Status](https://github.com/alex-kalanis/kw_tree_controls/actions/workflows/code_checks.yml/badge.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/alex-kalanis/kw_tree_controls/v/stable.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_tree_controls)
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 [![Downloads](https://img.shields.io/packagist/dt/alex-kalanis/kw_tree_controls.svg?v1)](https://packagist.org/packages/alex-kalanis/kw_tree_controls)
 [![License](https://poser.pugx.org/alex-kalanis/kw_tree_controls/license.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_tree_controls)
 [![Code Coverage](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/badges/coverage.png?b=master&v=1)](https://scrutinizer-ci.com/g/alex-kalanis/kw_tree_controls/?branch=master)
@@ -14,12 +14,8 @@ classes or you need to extend current classes and write them on your own.
 
 ## PHP Installation
 
-```
-{
-    "require": {
-        "alex-kalanis/kw_tree_controls": "2.0"
-    }
-}
+```bash
+composer.phar require alex-kalanis/kw_tree_controls
 ```
 
 (Refer to [Composer Documentation](https://github.com/composer/composer/blob/master/doc/00-intro.md#introduction) if you are not
